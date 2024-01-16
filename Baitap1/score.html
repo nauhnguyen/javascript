@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BaiTap1</title>
+</head>
+<body>
+    <main>
+        <label for="yourName">Input Student Name: </label><input type="text" id="yourName"><br> <br>
+        <label for="yourScore">Input Score: </label><input type="number" id="yourScore"> <input type="button" onclick="Grade(yourName.value,yourScore.value)" value="Define Grade">
+<hr>
+        <p id="stringGrade"></p>
+    </main>    
+    <script>
+        function Grade(textName,yourScore) {
+            var stringGrade = "";
+            if(yourName != ''){
+                if(yourScore != ''){
+                    if(yourScore >= 0 && yourScore <= 100){
+                        if(yourScore > 90){
+                            stringGrade = 'Excellent'
+                        }else if(yourScore > 80){
+                            stringGrade = 'Very Good'
+                        }else if(yourScore > 60){
+                            stringGrade = 'Fair'
+                        }else if(yourScore >= 50){
+                            stringGrade = 'Medium'
+                        }else{
+                            stringGrade = 'Fail'
+                        }
+                    }else{
+                        stringGrade = 'Score must be between 0 and 100'
+                    }
+                    document.getElementById("stringGrade").innerHTML = textName +" Grade:  <b>"+ stringGrade + '</b>'
+
+                }else{
+                    alert("Please enter a Score")
+                }
+            }else{
+                alert("Please enter a Name")
+            }
+        }
+    </script>
+</body>
+</html>
