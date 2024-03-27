@@ -1,53 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chi tiết nhà hàng</title>
-  <style>
-    .restaurant-details {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .restaurant-details img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm</title>
+    <style>
+       
+        .card {
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 500px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        
+        .card h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+        
+        .card p {
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #666;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-  <div class="restaurant-details">
-    <h1 id="restaurant-name"></h1>
-    <img id="restaurant-image" src="" alt="Restaurant Image">
-    <p><strong>Address:</strong> <span id="restaurant-address"></span></p>
-    <p><strong>Price:</strong> <span id="restaurant-price"></span></p>
-    <a href="index.html">Quay lại danh sách</a>
-  </div>
+    <div class="card" id="productDetail">
+       
+    </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const restaurantId = parseInt(urlParams.get('id'));
+    <script src="data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+           
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const productId = parseInt(urlParams.get('id'));
+     
+            const product = restaurant.find(item => item.id === productId);
+            if (product) {
+                displayProductDetail(product);
+            } else {
+                document.getElementById('productDetail').innerHTML = '<p>Sản phẩm không tồn tại.</p>';
+            }
+        });
 
-      const restaurant = restaurantData.find(restaurant => restaurant.id === restaurantId);
-
-      if (restaurant) {
-        document.getElementById('restaurant-name').textContent = restaurant.name;
-        document.getElementById('restaurant-image').src = restaurant.image;
-        document.getElementById('restaurant-address').textContent = restaurant.address;
-        document.getElementById('restaurant-price').textContent = restaurant.price;
-      } else {
-        alert('Không tìm thấy thông tin nhà hàng');
-      }
-    });
-
-    const restaurantData = [
-    ];
-  </script>
+     
+        function displayProductDetail(product) {
+            const productDetailDiv = document.getElementById("productDetail");
+            productDetailDiv.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h2>${product.name}</h2>
+                <p>Địa chỉ: ${product.address}</p>
+                <p>Giá: ${product.price}</p>
+            `;
+        }
+    </script>
 </body>
 </html>

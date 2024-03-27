@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Bang Diem</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="../BaiTap2/style.css">
+
+<body style="font-family: sans-serif;">
+    <div class="container">
+                        <div class="card-body">
+                            <h2 class="text-center" style="color: rgb(2, 146, 194)">BẢNG ĐIỂM CỦA EM</h2>
+                            <br>
+                            Semester 1 : <input class="form-control" type="number" id="Semester1">
+                            <br>
+                            Semester 2 : <input class="form-control" type="number" id="Semester2">
+                            <br>
+                            <div class="yearSelect">
+                                Year:
+                                <Select id="Year" style="color:red" class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </Select>
+                            </div>
+                            <br>
+                            Summarise: <input class="form-control" type="number" id="Summarise">
+                            <br>
+                            <p id="Result"></p>
+                                <div class="confirm">
+                                    <button onclick="Result(Semester1.value,Semester2.value,Year.value,Summarise.value)"
+                                    class="btnOk">Ok</button>
+                                    <button onclick="Cancel()" class="btnCancel">Cancel</button>
+                                </div>
+                        </div>
+    </div>
+    <script>
+        function Result(Semester1,Semester2,Year,Summarise){
+            var Result = 0;
+            var String_Result= '';
+            if(Semester1 !='' && Semester2 !=''){
+                Semester1 = Number(Semester1)
+                Semester2 = Number(Semester2)
+                if( Semester1 >= 0 && Semester1 <= 10 && Semester2 >= 0 && Semester2 <= 10){
+                    if(Year == 1){
+                        Result = (Semester1+(Semester2 * 2))/3
+                    }else if(Year == 2){
+                        Result = (Semester1+(Semester2 * 3))/4
+                    }else if(Year == 3){
+                        Result = (Semester1+(Semester2 * 4))/5
+                    }
+                    document.getElementById("Summarise").value = Result
+                if(Result >= 9){
+                    String_Result = 'HỌC SINH XUẤT SẮC'
+                }else if(Result >=8){
+                    String_Result = 'HỌC SINH GIỎI'
+                }else if(Result >= 7){
+                    String_Result = 'HỌC SINH KHÁ'
+                }else if(Result >= 5){
+                    String_Result = 'HỌC SINH TRUNG BÌNH'
+                }else{
+                    String_Result = 'HỌC SINH YẾU'
+                }
+                document.getElementById("Result").innerHTML = String_Result;
+                document.getElementById("Result").style.color = "red";
+                }else{
+                    alert("Điểm của bạn chỉ từ 0 -> 10")
+                }
+            }else{
+                alert("Vui lòng nhập điểm")
+            }
+        }
+        function Cancel() {
+        document.getElementById("Semester1").value = '';
+        document.getElementById("Semester2").value = '';
+        document.getElementById("Year").value = 1;
+        document.getElementById("Summarise").value = '';
+        document.getElementById("Result").innerHTML = '';
+        }
+    </script>
+</body>
+
+</html>

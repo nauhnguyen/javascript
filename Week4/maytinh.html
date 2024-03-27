@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style> 
+        body {
+            font-family: Poppins;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa; /* Bootstrap background color */
+        }
+
+        form {
+            text-align: center;
+            border: 4px solid #007bff;
+            padding: 30px;
+            border-radius: 20px;
+            background-color: #e2e5f7;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
+            margin-left: 28%;
+        }
+
+        h3 {
+            color: #007bff;
+        }
+
+        label {
+            margin-bottom: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #36706D;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 20%;
+            border: none;
+            font-size: 20px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 30px;
+            color: #00238E;
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+    <title>Hoang Huan</title>
+</head>
+<body>
+    <div class="container" style="font-family: Poppins;">
+        <form id="calculatorForm">
+            <h3 style="font-weight: bold;">CALCULATOR</h3><br>
+            <label for="numberA">Number A (*)</label>
+            <input type="text" id="numberA" name="numberA" placeholder="Enter number A..."><br>
+            <label for="numberB">Number B (*)</label>
+            <input type="text" id="numberB" name="numberB" placeholder="Enter number B..."><br>
+            <button type="button" onclick="add()">+</button>
+            <button type="button" onclick="subtract()">-</button>
+            <button type="button" onclick="multiply()">x</button>
+            <button type="button" onclick="divide()">/</button><br>
+            <h3 id="result">Result : </h3>
+        </form>
+    </div>
+    <script>
+        function add() {
+            calculate("add");
+        }
+
+        function subtract() {
+            calculate("subtract");
+        }
+
+        function multiply() {
+            calculate("multiply");
+        }
+
+        function divide() {
+            calculate("divide");
+        }
+
+        function calculate(operation) {
+            var numberA = parseFloat(document.getElementById("numberA").value);
+            var numberB = parseFloat(document.getElementById("numberB").value);
+            var resultElement = document.getElementById("result");
+
+            if (isNaN(numberA) || isNaN(numberB)) {
+                alert('Vui lòng nhập số hợp lệ');
+                return;
+            }
+
+            switch (operation) {
+                case "add":
+                    resultElement.textContent = "Result: " + (numberA + numberB);
+                    break;
+                case "subtract":
+                    resultElement.textContent = "Result: " + (numberA - numberB);
+                    break;
+                case "multiply":
+                    resultElement.textContent = "Result: " + (numberA * numberB);
+                    break;
+                case "divide":
+                    if (numberB !== 0) {
+                        resultElement.textContent = "Result: " + (numberA / numberB);
+                    } else {
+                        alert('Không thể chia cho 0');
+                        return;
+                    }
+                    break;
+                default:
+                    alert('Phép toán không hợp lệ');
+                    return;
+            }
+        }
+    </script>
+</body>
+</html>

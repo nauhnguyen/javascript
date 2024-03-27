@@ -1,0 +1,23 @@
+.container{
+    text-align: center;
+    background-color: silver;
+}
+.btnCancel{
+    margin-left: 15px;
+}
+label{
+    text-align: left;
+}
+input{
+    border: none;
+}
+button{
+    border: none;
+}
+select{
+    border: none;
+}
+.yearSelect{
+    margin-right: 83px;
+
+}
